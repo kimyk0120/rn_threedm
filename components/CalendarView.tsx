@@ -5,7 +5,6 @@ import { StyleSheet } from "react-native";
 
 function CalendarView() {
     return (
-
         <Calendar style={styles.calendar} />
     );
 }
