@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {StatusBar} from 'expo-status-bar';
 import CalendarView from "./components/CalendarView";
 import styled from "styled-components/native";
 
@@ -10,12 +9,32 @@ const ViewWrapper = styled.View`
   justify-content: center;
 `;
 
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         backgroundColor: '#F5FCFF',
+//     },
+//     welcome: {
+//         fontSize: 20,
+//         textAlign: 'center',
+//         margin: 10,
+//     },
+//     instructions: {
+//         textAlign: 'center',
+//         color: '#333333',
+//         marginBottom: 5,
+//     },
+// });
+
 export default function App() {
   return (
     <ViewWrapper>
-      <CalendarView />
-      {/*<Text>Open up App.js to start working on your app! test</Text>*/}
-      <StatusBar style="auto" />
+
+        <CalendarView/>
+        {/*<Text>Open up App.js to start working on your app! test</Text>*/}
+        <StatusBar style="auto"/>
     </ViewWrapper>
   );
 }
