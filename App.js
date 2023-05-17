@@ -1,5 +1,5 @@
 import {StatusBar} from 'expo-status-bar';
-import CalendarView from "./components/CalendarView";
+import FlexboxText from "./components/FlexboxTest";
 import styled from "styled-components/native";
 
 const ViewWrapper = styled.View`
@@ -31,8 +31,8 @@ const ViewWrapper = styled.View`
 export default function App() {
   return (
     <ViewWrapper>
-
-        <CalendarView/>
+        <FlexboxText></FlexboxText>
+        {/*<CalendarView/>*/}
         {/*<Text>Open up App.js to start working on your app! test</Text>*/}
         <StatusBar style="auto"/>
     </ViewWrapper>
