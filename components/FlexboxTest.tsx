@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'blue'
     },
     rightBottom: {
-        flex: 1,
+        flex: 2,
         backgroundColor: 'yellow'
     }
 

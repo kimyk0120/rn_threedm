@@ -6,6 +6,7 @@ import styled from "styled-components/native";
 const CalendarWrapper = styled.View`
   border-bottom-width: 20px;
   border-bottom-color: #e0e0e0;
+  
 `
 function CalendarView() {
     return (
