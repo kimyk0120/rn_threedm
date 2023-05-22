@@ -1,12 +1,15 @@
 ## 기록 캘린더 RN /w Expo
 
 ```
-
-
+   "expo": "~48.0.15"
 ```
 
+### DONE
+* react-native-calendar multiple mark
+
 ### TODO
-* RN 기초 학습 
+* 캘린터 main 화면 layout  
+* 
 
 
 ### Reference
@@ -14,3 +17,4 @@
 * flexbox 
   * https://css-tricks.com/snippets/css/a-guide-to-flexbox/
   * https://reactnative.dev/docs/flexbox.html#proptypes
+* ExpandableCalendar : https://github.com/wix/react-native-calendars/blob/master/example/src/screens/expandableCalendarScreen.tsx
