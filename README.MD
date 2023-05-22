@@ -6,6 +6,7 @@
 
 ### DONE
 * react-native-calendar multiple mark
+* Today 버튼 구현
 
 ### TODO
 * 캘린터 main 화면 layout  
