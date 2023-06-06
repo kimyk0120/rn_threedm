@@ -9,8 +9,8 @@
 * Today 버튼 구현
 
 ### TODO
-* 캘린터 main 화면 layout  
-* 
+* 캘린터 main 화면 layout 구성   
+* 체크박스 테스트 
 
 
 ### Reference

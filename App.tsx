@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Alert, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Agenda, AgendaEntry, AgendaSchedule, CalendarProvider, DateData} from "react-native-calendars";
 import TodayBtn from "./components/TodayBtn";
+import {getDate} from "./utils/DateUtils";
 
 // import testIDs from '../testIDs';
 
@@ -13,51 +14,36 @@ interface State {
 //     items: undefined
 // }
 
-function getDate(addDate:number){
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + addDate);
-    return tomorrow.toISOString().slice(0, 10);
-}
-
 export default function AgendaScreen() {
 
 
     const [selectedDate, setSelectedDate] = useState(() => {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = ("0" + (today.getMonth() + 1)).slice(-2);
-        const day = ("0" + today.getDate()).slice(-2);
-        return year + "-" + month + "-" + day;
+        return getDate(0);
     });
 
     const [state, setState] = useState<State>({});
 
+    const testVal = () => {
 
-    const [nextDay, setNextDay] = useState(() => {
-        const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-        return tomorrow.toISOString().slice(0, 10);
-    });
-
-    const testVal = {
-        "2023-06-07": {
-            marked: true,
-            dots: [{key: "dot3", color: "blue"}],
-            dotColor: "black",
-            selected: false,
-        },
-        "2023-06-08": {
-            marked: true,
-            dots: [
-                {key: "dot1", color: "red"},
-                {key: "dot2", color: "green"},
-            ],
-            selected: false,
-        },
+        const nextDay = getDate(1);
+        const dayAfterTommorow = getDate(2);
+        return {
+            [nextDay]: {  // 대괄호를 통해 객체 속성 값으로 접근가능
+                marked: true,
+                dots: [{key: "dot3", color: "blue"}],
+                dotColor: "black",
+                selected: false,
+            },
+            [dayAfterTommorow]: {
+                marked: true,
+                dots: [
+                    {key: "dot1", color: "red"},
+                    {key: "dot2", color: "green"},
+                ],
+                selected: false,
+            },
+        }
     }
-
 
 
     const dayAfterTommorow = null;
@@ -221,7 +207,7 @@ export default function AgendaScreen() {
                     showClosingKnob={true}
                     // By default, agenda dates are marked if they have at least one item, but you can override this if needed
                     markingType={"multi-dot"}
-                    markedDates={testVal}
+                    markedDates={testVal()}
                     // If disabledByDefault={true} dates flagged as not disabled will be enabled. Default = false
                     // disabledByDefault={true}
                     // If provided, a standard RefreshControl will be added for "Pull to Refresh" functionality. Make sure to also set the refreshing prop correctly
