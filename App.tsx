@@ -4,15 +4,10 @@ import {Agenda, AgendaEntry, AgendaSchedule, CalendarProvider, DateData} from "r
 import TodayBtn from "./components/TodayBtn";
 import {getDate} from "./utils/DateUtils";
 
-// import testIDs from '../testIDs';
-
 interface State {
     items?: AgendaSchedule;
 }
 
-// interface state{
-//     items: undefined
-// }
 
 export default function AgendaScreen() {
 
@@ -23,7 +18,7 @@ export default function AgendaScreen() {
 
     const [state, setState] = useState<State>({});
 
-    const testVal = () => {
+    const testMarkedDates = () => {
 
         const nextDay = getDate(1);
         const dayAfterTommorow = getDate(2);
@@ -45,61 +40,9 @@ export default function AgendaScreen() {
         }
     }
 
-
-    const dayAfterTommorow = null;
-
-
     // reservationsKeyExtractor = (item, index) => {
     //   return `${item?.reservation?.day}${index}`;
     // };
-
-    const loadItems = (day: DateData) => {
-        const items = state?.items || {};
-
-        setTimeout(() => {
-            for (let i = -15; i < 85; i++) {
-                const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-                const strTime = timeToString(time);
-
-                if (!items[strTime]) {
-                    items[strTime] = [];
-
-                    const numItems = Math.floor(Math.random() * 3 + 1);
-                    for (let j = 0; j < numItems; j++) {
-                        items[strTime].push({
-                            name: "Item for " + strTime + " #" + j,
-                            height: Math.max(50, Math.floor(Math.random() * 150)),
-                            day: strTime
-                        });
-                    }
-                }
-            }
-
-            const newItems: AgendaSchedule = {};
-            Object.keys(items).forEach(key => {
-                newItems[key] = items[key];
-            });
-
-            setState({
-                items: newItems
-            });
-        }, 1000);
-    };
-
-    const renderItem = (reservation: AgendaEntry, isFirst: boolean) => {
-        const fontSize = isFirst ? 16 : 14;
-        const color = isFirst ? "black" : "#43515c";
-
-        return (
-            <TouchableOpacity
-                // testID={testIDs.agenda.ITEM}
-                style={[styles.item, {height: reservation.height}]}
-                onPress={() => Alert.alert(reservation.name)}
-            >
-                <Text style={{fontSize, color}}>{reservation.name}</Text>
-            </TouchableOpacity>
-        );
-    };
 
     const renderEmptyDate = () => {
         return (
@@ -128,10 +71,11 @@ export default function AgendaScreen() {
 
     const tests: any =
         {
-            "2012-05-22": [{name: "item 1 - any js object"}],
-            "2012-05-23": [{name: "item 2 - any js object", height: 80}],
-            "2012-05-24": [],
-            "2012-05-25": [{name: "item 3 - any js object"}, {name: "any js object"}]
+            [getDate(0)] :[],
+            "2023-06-22": [{name: "item 1 - any js object"}],
+            "2023-06-23": [{name: "item 2 - any js object", height: 80}],
+            "2023-06-24": [],
+            "2023-06-25": [{name: "item 3 - any js object"}, {name: "any js object"}]
         };
 
     return (
@@ -142,7 +86,6 @@ export default function AgendaScreen() {
                     testID={"kimyk"}
                     // items={state?.items}
                     items={tests}
-                    // loadItemsForMonth={loadItems}
                     loadItemsForMonth={month => {
                         console.log("trigger items loading");
                     }}
@@ -153,25 +96,27 @@ export default function AgendaScreen() {
                     onDayChange={day => {
                         console.log("day changed");
                     }}
-                    // selected={selectedDate}
-
-                    // Specify how each item should be rendered in agenda
-                    renderItem={(item, firstItemInDay) => {
-                        return (
-                            <View>
-                                <Text> renderItem test</Text>
-                            </View>
-                        );
-                    }}
 
                     // Specify how each date should be rendered. day can be undefined if the item is not first in that day
                     renderDay={(day, item) => {
                         return (
                             <View>
-                                <Text> renderDay test</Text>
+                                <Text> renderDay test  {item?.name}</Text>
                             </View>
                         );
                     }}
+
+                    // Specify how each item should be rendered in agenda
+                    // renderItem={(item, firstItemInDay) => {
+                    //     return (
+                    //         <View>
+                    //             <Text> renderItem test  {item.day} </Text>
+                    //
+                    //         </View>
+                    //     );
+                    // }}
+
+
                     // Specify how empty date content with no items should be rendered
                     renderEmptyDate={() => {
                         return (
@@ -207,7 +152,7 @@ export default function AgendaScreen() {
                     showClosingKnob={true}
                     // By default, agenda dates are marked if they have at least one item, but you can override this if needed
                     markingType={"multi-dot"}
-                    markedDates={testVal()}
+                    markedDates={testMarkedDates()}
                     // If disabledByDefault={true} dates flagged as not disabled will be enabled. Default = false
                     // disabledByDefault={true}
                     // If provided, a standard RefreshControl will be added for "Pull to Refresh" functionality. Make sure to also set the refreshing prop correctly
