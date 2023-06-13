@@ -9,6 +9,7 @@
 * Today 버튼 구현
 
 ### TODO
+* Local DB 검토 및 화정 
 * 캘린터 main 화면 layout 구성   
 * 체크박스 테스트 
 
